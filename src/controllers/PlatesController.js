@@ -24,6 +24,15 @@ class PlatesController {
 
         return response.json()
     }
+
+    async show(request, response) {
+        const { id } = request.params;
+        const plate = await knex("plates").where({ id }).first();
+        const category = await knex("categories").where({ id: plate.category_id }).first();
+        const ingredients = await knex("ingredients").where({ plate_id: id }).orderBy("name");
+
+        return response.json({ plate, category, ingredients });
+    }
 }
 
 module.exports = PlatesController;
