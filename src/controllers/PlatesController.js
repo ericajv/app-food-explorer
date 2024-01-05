@@ -41,6 +41,13 @@ class PlatesController {
 
         return response.json();
     }
+
+    async index(request, response){
+        const {category_id} = request.query;
+        const plates = await knex("plates").where({category_id}).orderBy("name");
+
+        return response.json({plates});
+    }
 }
 
 module.exports = PlatesController;
