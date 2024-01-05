@@ -6,7 +6,7 @@ class PlatesController {
 
         const categoryRegister = await knex("categories").where({ name: category }).first();
 
-        const plate_id = await knex("plates").insert({
+        const [plate_id] = await knex("plates").insert({
             name,
             description,
             price,
@@ -20,7 +20,7 @@ class PlatesController {
             }
         });
 
-        //await knex("ingredients").insert(ingredientsInsert);
+        await knex("ingredients").insert(ingredientsInsert);
 
         return response.json()
     }
@@ -32,6 +32,14 @@ class PlatesController {
         const ingredients = await knex("ingredients").where({ plate_id: id }).orderBy("name");
 
         return response.json({ plate, category, ingredients });
+    }
+
+    async delete(request, response){
+        const {id} = request.params;
+
+        await knex("plates").where({id}).delete();
+
+        return response.json();
     }
 }
 
