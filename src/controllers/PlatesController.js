@@ -34,19 +34,30 @@ class PlatesController {
         return response.json({ plate, category, ingredients });
     }
 
-    async delete(request, response){
-        const {id} = request.params;
+    async delete(request, response) {
+        const { id } = request.params;
 
-        await knex("plates").where({id}).delete();
+        await knex("plates").where({ id }).delete();
 
         return response.json();
     }
 
-    async index(request, response){
-        const {category_id} = request.query;
-        const plates = await knex("plates").where({category_id}).orderBy("name");
+    async index(request, response) {
+        const { name } = request.query;
 
-        return response.json({plates});
+        const categories = await knex("categories").orderBy("name");
+
+        for (const category of categories) {
+            let platesQuery = knex("plates").where({ category_id: category.id })
+
+            if (name) {
+                platesQuery = platesQuery.whereLike("name", `%${name}%`)
+            }
+
+            category.plates = await platesQuery
+        }
+
+        return response.json({ categories });
     }
 }
 
