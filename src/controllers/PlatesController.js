@@ -59,6 +59,29 @@ class PlatesController {
 
         return response.json({ categories });
     }
-}
 
+    async update(request, response) {
+        const { name, description, price, category, ingredients } = request.body;
+        const { id } = request.params;
+        let plate = await knex("plates").where({ id }).first();
+
+        if (!plate) {
+            throw new AppError(`Não foi possível encontrar refeição id: ${id}`)
+        }
+
+        const categoryRegister = await knex("categories").where({ name: category }).first();
+
+        await knex("plates").update({ name, description, price, category_id: categoryRegister.id }).where({ id })
+
+        await knex("ingredients").where({ plate_id: id }).delete()
+
+        if (ingredients.length !== 0) {
+            const ingredientsInsert = ingredients.map(ingredient => { return { plate_id: id, name: ingredient } })
+
+            await knex("ingredients").insert(ingredientsInsert)
+        }
+
+        return response.json()
+    }
+}
 module.exports = PlatesController;
