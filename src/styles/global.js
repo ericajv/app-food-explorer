@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     *{
@@ -12,16 +12,15 @@ export default createGlobalStyle`
     
     }
     button:hover{
-        background-color: ${({theme}) => theme.COLORS.TOMATO_400};
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
     }
     body{
-        background-color: ${({theme}) => theme.COLORS.DARK_400};
-        color: ${({theme}) => theme.COLORS.LIGHT_100};
+        background-color: ${({ theme }) => theme.COLORS.DARK_400};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
         -webkit-font-smoothing: antialiased;
     }
     body, input, button, textarea{
         font-family:'Poppins', sans-serif;
-        font-size: 14px;
         outline: none;
     }
 
