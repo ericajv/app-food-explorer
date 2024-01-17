@@ -5,7 +5,7 @@ export function Prato(){
   return(
     <Container>
     <h1> hello world</h1>
-    <Button></Button>
+    <Button title = "Editar prato" loading/>
     <span>erica</span>
   </Container>
   )
