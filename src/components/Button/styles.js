@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.button`
     width: 100%;
+    display: flex;
+    align-Items: center;
+    gap: 8px;
+
     background-color: ${({theme}) => theme.COLORS.TOMATO_100};
     color: ${({theme}) => theme.COLORS.LIGHT_100};
 
@@ -9,7 +13,6 @@ export const Container = styled.button`
     padding: 0 12px;
     border-radius: 5px;
     border: none;
-
 
     font-weight: 500;
 
