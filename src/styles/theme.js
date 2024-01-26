@@ -18,6 +18,7 @@ export default {
         DARK_800: "#0D161B",
         DARK_900: "#0D1D25",
         DARK_1000: "#192227",
+        BLACK: "1E1E1E",
 
         TOMATO_100: "#750310",
         TOMATO_200: "#92000E",
@@ -28,6 +29,7 @@ export default {
         MINT_100: "#04D361",
         CAKE_200: "#82F3FF",
         CAKE_100: "#065E7C",
+
     }
 
     

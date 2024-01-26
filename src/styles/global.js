@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import {DEVICE_BREAKPOINTS} from "./deviceBreakpoints";
 
 export default createGlobalStyle`
     *{
@@ -6,7 +7,15 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-    button{
+
+    :root {
+        font-Size: 16px;
+
+        @media(max-width: ${DEVICE_BREAKPOINTS.MD}){
+            font-Size: 12px;      
+        }
+    }
+    button {
         cursor: pointer;
         transition: filter 0.2s;
     
@@ -22,6 +31,7 @@ export default createGlobalStyle`
     body, input, button, textarea{
         font-family:'Poppins', sans-serif;
         outline: none;
+        font-Size: 1rem;
     }
 
 
