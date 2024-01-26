@@ -2,6 +2,7 @@ import { Container, Logo, Form } from "./styles";
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
+import { ButtonText } from "../../components/ButtonText"
 
 export function Signin() {
     return (
@@ -12,17 +13,18 @@ export function Signin() {
             </Logo>
             <Form>
                 <h2>Faça Login</h2>
-                  <label htmlFor="email">Email</label>  
+                <label htmlFor="email">Email</label>
                 <Input
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="text"
                 ></Input>
-                 <label htmlFor="password">Senha</label>  
+                <label htmlFor="password">Senha</label>
                 <Input
                     placeholder="No mínimo 6 caracteres"
                     type="password"
                 ></Input>
                 <Button title="Entrar"></Button>
+                <ButtonText title="Criar uma conta"></ButtonText>
             </Form>
         </Container>
     );
