@@ -7,7 +7,7 @@ export const Container = styled.button`
     
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     color:${({ theme }) => theme.COLORS.LIGHT_100};
-    height: 32px;
+    height: 48px;
     padding:12px;
     
     border-radius: 5px;
