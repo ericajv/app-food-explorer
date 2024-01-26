@@ -2,15 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.button`
     width: 100%;
-    display: flex;
-    align-Items: center;
-    gap: 8px;
-
-    background-color: ${({theme}) => theme.COLORS.TOMATO_100};
-    color: ${({theme}) => theme.COLORS.LIGHT_100};
-
+    text-Align: center;
+    line-height: 10px;
+    
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    color:${({ theme }) => theme.COLORS.LIGHT_100};
     height: 32px;
-    padding: 0 12px;
+    padding:12px;
+    
     border-radius: 5px;
     border: none;
 
