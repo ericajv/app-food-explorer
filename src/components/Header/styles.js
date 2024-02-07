@@ -1,24 +1,26 @@
 import styled from "styled-components";
-import px2vw from '../../utils/px2vw';
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.header`
     display: flex;
     align-Items: center;
-    gap: ${px2vw(32)};
+    gap: 2rem;
 
     width:100%;
-    height:  ${px2vw(105)};
+    height:7rem;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
-    padding: 24px 123px;
+    padding: 1.5rem 7.7rem;
    
-    @media (min-width: 768px) {
-        height: ${px2vw(220)};
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        padding: 1rem 5rem;
         display: flex;
-        justify-content: center;
+        justify-Content: space-between;
+       align-Items: center;
+        
     };
 `;
-   
+
 
 export const Logo = styled.div`
 display: flex;
@@ -41,6 +43,24 @@ export const Logout = styled.button`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-Size:32px; 
     }
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+  display: none;
+
+}
    
+
+`;
+export const List = styled.button`
+
+display: none;
+@media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    display: block;
+    font-Size: 3.5rem;
+    background-Color: transparent;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+   align-Items: center;
+   border:none;
+  };
+
 
 `;

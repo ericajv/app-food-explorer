@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
+
 
 export const Container = styled.button`
     display: flex;
@@ -9,13 +11,12 @@ export const Container = styled.button`
     height: 56px;
     padding: 12px 32px;
 
-    
     border-radius: 5px;
     border: none;
-    background-color: ${({theme}) => theme.COLORS.TOMATO_100};
-    color: ${({theme}) => theme.COLORS.LIGHT_100};
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-weight: 400;
-    font-Size: 16px;
+    font-Size: 1rem;
     white-space: nowrap;
 
     &:disabled{
@@ -24,9 +25,13 @@ export const Container = styled.button`
    
     > svg{
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        width: 26px;
-        height: 22px;
+        width: 1.62rem;
+        height: 1.37rem;
     }
-
+ @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    width: 130px;
+    height: 38px;
+    text-Align: center;
+   }
 
 `;
