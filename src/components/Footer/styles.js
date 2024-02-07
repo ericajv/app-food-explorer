@@ -1,17 +1,21 @@
 import styled from "styled-components";
 
+
 export const Container = styled.footer`
 display: flex;
 justify-Content:space-between;
 align-Items:center;
-padding: 24px 123px;
+padding: 1.5rem 3rem;
 height: 77px;
-
+position: fixed;
+bottom: 0;
+width: 100%;
 
 background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-font-Size: 15px;
+font-Size: 1rem;
 font-Weight: 200;
+white-space: nowrap;
 `;
 
 export const LogoDark = styled.div`
