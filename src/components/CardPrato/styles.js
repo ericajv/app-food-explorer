@@ -92,7 +92,7 @@ export const Title = styled.div`
 export const Increment = styled.div`
     background-Color: transparent;
     margin-Top:12px; 
-    
+    /* display:none; */
       width: 208px;
       display: flex;
       align-Items: center;
@@ -105,6 +105,7 @@ export const Increment = styled.div`
       }
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
       display: flex;
+      /* display:none; */
       align-Items: center;
       flex-Direction: column;
 
