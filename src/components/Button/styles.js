@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.button`
     width: 100%;
@@ -12,13 +13,15 @@ export const Container = styled.button`
     
     border-radius: 5px;
     border: none;
-
+   
     font-weight: 500;
 
     &:disabled{
         opacity: 0.5;
     }
-
+    /* @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+        display: none;
+    } */
 
 
 `;
