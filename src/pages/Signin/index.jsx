@@ -1,10 +1,18 @@
 import { Container, Logo, Form } from "./styles";
+import {  useNavigate } from "react-router-dom";
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
 export function Signin() {
+    
+    const navigate = useNavigate()
+
+    function navigateToRegister() {
+        navigate("/register")
+    }
+
     return (
         <Container>
             <Logo>
@@ -23,8 +31,8 @@ export function Signin() {
                     placeholder="No mínimo 6 caracteres"
                     type="password"
                 ></Input>
-                <Button title="Entrar"></Button>
-                <ButtonText title="Criar uma conta"></ButtonText>
+                <Button title="Entrar" ></Button>
+                <ButtonText onClick={navigateToRegister} title="Criar uma conta"></ButtonText>
             </Form>
         </Container>
     );

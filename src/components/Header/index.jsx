@@ -4,9 +4,15 @@ import { Container, Logo, Logout, List } from "./styles";
 import { ButtonHeader } from '../ButtonHeader'
 import { InputHeader } from '../InputHeader';
 import { HiMenu } from "react-icons/hi";
-
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
+    const navigate = useNavigate()
+
+    function navigateToCreate() {
+        navigate("/adicionar-prato")
+    }
+
     return (
         <Container>
             <List>
@@ -19,7 +25,10 @@ export function Header() {
             </Logo>
             <InputHeader placeholder="Busque por pratos ou ingredientes" icon={GoSearch} />
 
-            <ButtonHeader title="Pedidos (0)" />
+            <ButtonHeader
+                title={false ? "Novo prato" : "Pedidos (0)"}
+                onClick={false ? navigateToCreate : null}
+            />
 
             <Logout>
                 <GoSignOut />

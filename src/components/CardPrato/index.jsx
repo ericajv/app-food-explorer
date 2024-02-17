@@ -4,16 +4,23 @@ import { IoIosArrowForward } from "react-icons/io";
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
 import { PiPencilSimple } from "react-icons/pi";
+import {  useNavigate } from "react-router-dom";
 
 import { Button } from '../Button'
 
 
-export function CardPrato({ title, ...rest }) {
+export function CardPrato({ title, data, ...rest }) {
+    const navigate = useNavigate()
+
+    function navigateToEdit() {
+        navigate(`/editar-prato/${data.id}`)
+    }
+
     return (
         <Container>
             {false
                 ? <button className="FavoriteMeal" > <FaRegHeart /> </button>
-                : <button className="EditMeal" > <PiPencilSimple /> </button>
+                : <button onClick={navigateToEdit} className="EditMeal" > <PiPencilSimple /> </button>
             }
             <ImageFav>
                 <img src="public\assets\Mask group.png" alt="imagem do Prato" />

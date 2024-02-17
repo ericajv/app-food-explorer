@@ -8,14 +8,20 @@ import { IngredienteItem } from '../../components/IngredienteItem'
 import { IoChevronBackOutline } from "react-icons/io5";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import { SlArrowDown } from "react-icons/sl";
-
+import {  useNavigate } from "react-router-dom";
 
 export function AdicionaPrato() {
+  const navigate = useNavigate()
+
+  function navigateToHome() {
+      navigate("/")
+  }
+
   return (
     <Container>
       <Header />
       <ButtonBack>
-        <Button icon={IoChevronBackOutline} title="voltar" />
+        <Button onClick={navigateToHome} icon={IoChevronBackOutline} title="voltar" />
         <h2>Novo Prato</h2>
       </ButtonBack>
       <Form>

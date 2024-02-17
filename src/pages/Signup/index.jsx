@@ -1,10 +1,17 @@
 import { Container, Logo, Form } from "./styles";
-
+import {useNavigate} from "react-router-dom";
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
 export function Signup() {
+    const navigate = useNavigate()
+
+    function navigateToLogin() {
+        navigate("/")
+    }
+  
+    
     return (
         <Container>
             <Logo>
@@ -29,7 +36,7 @@ export function Signup() {
                     type="password"
                 ></Input>
                 <Button title="Criar conta"></Button>
-                <ButtonText title="Já tenho uma conta"></ButtonText>
+                <ButtonText onClick={navigateToLogin} title="Já tenho uma conta"></ButtonText>
             </Form>
         </Container>
     );

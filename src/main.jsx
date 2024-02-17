@@ -5,13 +5,13 @@ import GlobalStyle from './styles/global';
 
 import theme from './styles/theme'
 
-import {CardPrato} from './components/CardPrato';
+import {Routes} from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider  theme = {theme} >
       <GlobalStyle/>
-    <CardPrato />
+    <Routes/>
     </ThemeProvider>
   </React.StrictMode>,
 )
