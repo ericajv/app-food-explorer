@@ -1,6 +1,4 @@
-import { GoSignOut } from 'react-icons/go';
-import { GoSearch } from "react-icons/go";
-
+import { GoSignOut, GoSearch } from 'react-icons/go';
 
 import { Container, Logo, Logout, List } from "./styles";
 import { ButtonHeader } from '../ButtonHeader'
