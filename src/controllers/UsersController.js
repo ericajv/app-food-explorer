@@ -1,14 +1,13 @@
 const { hash, compare } = require("bcryptjs");
 const AppError = require("../utils/AppError");
-
+const knex = require('../database/knex');
 
 class UsersController {
 
     async create(request, response) {
-        const { name, email, password, role } = request.body;
+        const { name, email, password } = request.body;
 
-        const database = await sqliteConnection();
-        const checkUsersExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
+        const checkUsersExists = await knex("users").where({ email }).first();
 
         if (checkUsersExists) {
             throw new AppError("Este email ja está em uso");
@@ -16,25 +15,27 @@ class UsersController {
 
         const hashedPassword = await hash(password, 8);
 
-        await database.run("INSERT INTO users (name, email, password, role) VALUES (?,?,?,?)",
-            [name, email, hashedPassword, role]
-        );
+        const [id] = await knex("users").insert({
+            name,
+            email,
+            password: hashedPassword,
+            role: "user"
+        });
 
-        response.status(201).json();
+        response.status(201).json({ id });
     }
 
     async update(request, response) {
         const { name, email, password, old_password } = request.body;
-        const { id } = request.params;
+        const id = request.user.id;
 
-        const database = await sqliteConnection();
-        const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+        const user = await knex("users").where({ id }).first();
 
         if (!user) {
             throw new AppError("Usuário não encontrado");
         }
 
-        const userWithUpdatedEmail = await database.get("SELECT * FROM users WHERE email = (?)", [email]);
+        const userWithUpdatedEmail = await knex("users").where({ email }).first();
 
         if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
             throw new AppError("Este email ja esta em uso!");
@@ -55,17 +56,15 @@ class UsersController {
 
         }
 
-        await database.run(`
-        UPDATE users SET
-        name = ?,
-        email = ?,
-        password = ?,
-        updated_at = DATETIME('now')
-        WHERE id = ?`,
-            [user.name, user.email, user.password, id]
-        );
+        const userData = {
+            name: user.name,
+            email: user.email,
+            password: user.password,
+        };
 
-        return response.json();
+        await knex("users").update(userData).where({ id });
+
+        return response.status(201).json(user);
     }
 }
 module.exports = UsersController;
