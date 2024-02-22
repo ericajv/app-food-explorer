@@ -21,6 +21,6 @@ platesRoutes.get("/:id", platesController.show);
 platesRoutes.delete("/:id", ensureAdminAuthenticated, platesController.delete);
 platesRoutes.get("/", platesController.index);
 platesRoutes.put("/:id", ensureAdminAuthenticated, platesController.update);
-platesRoutes.patch("/:id/image", upload.single("image"), plateImageController.update)
+platesRoutes.patch("/:id/image", ensureAdminAuthenticated, upload.single("image"), plateImageController.update)
 
 module.exports = platesRoutes;

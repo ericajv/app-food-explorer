@@ -2,9 +2,9 @@ const knex = require("../database/knex");
 
 class PlatesController {
     async create(request, response) {
-        const { name, description, price, category, ingredients } = request.body;
+        const { name, description, price, category_name, ingredients } = request.body;
 
-        const categoryRegister = await knex("categories").where({ name: category }).first();
+        const categoryRegister = await knex("categories").where({ name: category_name }).first();
 
         const [plate_id] = await knex("plates").insert({
             name,
@@ -61,7 +61,7 @@ class PlatesController {
     }
 
     async update(request, response) {
-        const { name, description, price, category, ingredients } = request.body;
+        const { name, description, price, category_name, ingredients } = request.body;
         const { id } = request.params;
         let plate = await knex("plates").where({ id }).first();
 
@@ -69,7 +69,7 @@ class PlatesController {
             throw new AppError(`Não foi possível encontrar refeição id: ${id}`)
         }
 
-        const categoryRegister = await knex("categories").where({ name: category }).first();
+        const categoryRegister = await knex("categories").where({ name: category_name }).first();
 
         await knex("plates").update({ name, description, price, category_id: categoryRegister.id }).where({ id })
 
