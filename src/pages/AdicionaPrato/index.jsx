@@ -8,12 +8,13 @@ import { IngredienteItem } from '../../components/IngredienteItem'
 import { IoChevronBackOutline } from "react-icons/io5";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import { SlArrowDown } from "react-icons/sl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from '../../services/api';
 import { useState } from 'react';
 
 export function AdicionaPrato() {
     const navigate = useNavigate()
+    const params = useParams()
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -75,9 +76,10 @@ export function AdicionaPrato() {
             navigate("/login")
         }
 
+        console.log(image);
         const formData = new FormData()
         formData.append("image", image)
-        await api.patch(`/meals/${params.id}/image`, formData)
+        await api.patch(`/plates/${params.id}/image`, formData)
 
         alert("Refeição salva com sucesso")
     }
@@ -96,8 +98,9 @@ export function AdicionaPrato() {
                         <Input
                             icon={HiOutlineArrowUpTray}
                             placeholder="selecione a imagem"
-                            type="img"
-                            onChange={e => setImage(e.target.value)}
+                            type="file"
+                            id="image"
+                            onChange={e => setImage(e.target.files[0])}
                         />
                     </div>
                     <div className='name'>
@@ -146,8 +149,15 @@ export function AdicionaPrato() {
                         <Input
                             placeholder="R$ 00,00"
                             type="float"
-                            value={"R$ " + String(price.toFixed(2)).replace(".", ",")}
-                            onChange={e => setPrice(Number(e.target.value.replace(",", ".")))}
+                            // value={"R$ " + String(price.toFixed(2)).replace(".", ",")}
+                            value={price}
+                            onChange={e => {
+                                // console.log(e.target.value)
+                                // const p = e.target.value.split(' ')[1].replace(",", ".")
+                                // console.log(p)
+                                // setPrice(p)
+                                setPrice(e.target.value)
+                            }}
                         />
                     </div>
                 </div>

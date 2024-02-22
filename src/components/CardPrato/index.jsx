@@ -9,10 +9,12 @@ import {  useNavigate } from "react-router-dom";
 import { Button } from '../Button'
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
 
 export function CardPrato({ title, data, ...rest }) {
     const navigate = useNavigate()
     const { user } = useAuth()
+    const plateImageUrl = data.image ? `${api.defaults.baseURL}/files/${data.image}` : null
 
     function navigateToEdit() {
         navigate(`/editar-prato/${data.id}`)
@@ -37,8 +39,8 @@ export function CardPrato({ title, data, ...rest }) {
                 : <button onClick={navigateToEdit} className="EditMeal" > <PiPencilSimple /> </button>
             }
             <ImageFav onClick={navigateToEdit}>
-                {/* <img src={data.image} alt="imagem do Prato" /> */}
-                <img src="assets\Mask group.png" alt="imagem do Prato" />
+                <img src={plateImageUrl} alt="imagem do Prato" />
+                {/* <img src="assets\Mask group.png" alt="imagem do Prato" /> */}
             </ImageFav>
             <Title onClick={navigateToEdit}>
                 <p>{data.name}</p>

@@ -75,16 +75,18 @@ export function EditaPrato() {
 
         await api.put(`/plates/${params.id}`, { name, description, price, category_name: category, ingredients })
 
-        const response = await api.get(`/meals/${params.id}`)
+        const response = await api.get(`/plates/${params.id}`)
 
         if (response.status == 401) {
             navigate("/login")
         }
 
-        if (image != response.data.image) {
+        if (image && image != response.data.plate.image) {
+            console.log(response.data.plate.image);
+            console.log(image);
             const formData = new FormData()
             formData.append("image", image)
-            await api.patch(`/meals/${params.id}/image`, formData)
+            await api.patch(`/plates/${params.id}/image`, formData)
         }
 
         alert("Refeição modificada com sucesso")
@@ -121,6 +123,7 @@ export function EditaPrato() {
                             icon={HiOutlineArrowUpTray}
                             placeholder="selecione a imagem"
                             type="file"
+                            id="image"
                             onChange={e => setImage(e.target.files[0])}
                         />
                     </div>
