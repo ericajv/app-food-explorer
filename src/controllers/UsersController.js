@@ -64,6 +64,8 @@ class UsersController {
 
         await knex("users").update(userData).where({ id });
 
+        delete user.password;
+
         return response.status(201).json(user);
     }
 }
