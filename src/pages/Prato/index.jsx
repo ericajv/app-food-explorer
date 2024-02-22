@@ -22,7 +22,7 @@ export function Prato() {
         <Button onClick={navigateToHome} icon={IoChevronBackOutline} title="voltar" />
       </ButtonBack>
       <Details>
-        <img src="public\assets\Mask group.png" alt="foto prato comida" />
+        <img src="assets\Mask group.png" alt="foto prato comida" />
         <Description>
           <p className='title'>Salada Ravanello</p>
           <span>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. </span>

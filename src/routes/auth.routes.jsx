@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Signin } from '../pages/Signin'
-import { Signup } from '../pages/Signup'
+import { SignIn } from '../pages/SignIn'
+import { SignUp } from '../pages/SignUp'
 
 export function AuthRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<Signin />} />
-            <Route path="/register" element={<Signup />} />
+            <Route path="/" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />
         </Routes>
     )
 }

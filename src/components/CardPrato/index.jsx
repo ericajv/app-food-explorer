@@ -7,36 +7,51 @@ import { PiPencilSimple } from "react-icons/pi";
 import {  useNavigate } from "react-router-dom";
 
 import { Button } from '../Button'
-
+import { useState } from 'react';
+import { useAuth } from '../../hooks/auth';
 
 export function CardPrato({ title, data, ...rest }) {
     const navigate = useNavigate()
+    const { user } = useAuth()
 
     function navigateToEdit() {
         navigate(`/editar-prato/${data.id}`)
     }
 
+    const [quantity, setQuantity] = useState(1)
+
+    function handleAddItem() {
+        setQuantity(quantity + 1)
+    }
+
+    function handleRemoveItem() {
+        if (quantity != 1) {
+            setQuantity(quantity - 1)
+        }
+    }
+
     return (
         <Container>
-            {false
+            {user.role != "admin"
                 ? <button className="FavoriteMeal" > <FaRegHeart /> </button>
                 : <button onClick={navigateToEdit} className="EditMeal" > <PiPencilSimple /> </button>
             }
-            <ImageFav>
-                <img src="public\assets\Mask group.png" alt="imagem do Prato" />
+            <ImageFav onClick={navigateToEdit}>
+                {/* <img src={data.image} alt="imagem do Prato" /> */}
+                <img src="assets\Mask group.png" alt="imagem do Prato" />
             </ImageFav>
-            <Title>
-                <p>Salada Ravanello</p>
+            <Title onClick={navigateToEdit}>
+                <p>{data.name}</p>
                 <IoIosArrowForward />
             </Title>
-            <p>Massa fresca com camarões e pesto. </p>
-            <span>R$ 49,97</span>
-            {true &&
+            <p>{data.description}</p>
+            <span>R$ {String(data.price.toFixed(2)).replace(".", ",")}</span>
+            {user.role != "admin" &&
                 <Increment>
                     <Amount>
-                        <FiMinus />
-                        <p>01</p>
-                        <GoPlus />
+                        <FiMinus onClick={handleRemoveItem}/>
+                        <p>{quantity < 10 ? `0${quantity}` : quantity}</p>
+                        <GoPlus onClick={handleAddItem}/>
                     </Amount>
                     <Button title="Incluir" />
                 </Increment>

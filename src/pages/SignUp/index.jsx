@@ -6,7 +6,7 @@ import { ButtonText } from "../../components/ButtonText"
 import { useState } from "react";
 import { api } from "../../services/api";
 
-export function Signup() {
+export function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

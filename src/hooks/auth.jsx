@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { api } from "../services/api";
+import { createContext, useContext, useState, useEffect } from "react"
+
+import { api } from "../services/api"
 
 export const AuthContext = createContext({})
 
@@ -19,7 +20,11 @@ function AuthProvider({ children }) {
 
             setData({ user, token })
         } catch (error) {
-            alert(error.response.data.message || "Erro ao tentar fazer login");
+            if (error.response) {
+                alert(error.response.data.message)
+            } else {
+                alert("Ocorreu um erro no login")
+            }
         }
     }
 
@@ -44,7 +49,7 @@ function AuthProvider({ children }) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
+        <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
             { children }
         </AuthContext.Provider>
     )

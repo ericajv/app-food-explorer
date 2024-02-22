@@ -1,16 +1,26 @@
 import { Container, Logo, Form } from "./styles";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
+import { useAuth } from "../../hooks/auth";
+import { useState } from "react";
 
-export function Signin() {
-    
+export function SignIn() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
     const navigate = useNavigate()
+
+    const { signIn } = useAuth()
 
     function navigateToRegister() {
         navigate("/register")
+    }
+
+    async function handleSignIn() {
+        signIn({ email, password })
     }
 
     return (
@@ -25,14 +35,16 @@ export function Signin() {
                 <Input
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="text"
-                ></Input>
+                    onChange={e => setEmail(e.target.value)}
+                />
                 <label htmlFor="password">Senha</label>
                 <Input
                     placeholder="No mínimo 6 caracteres"
                     type="password"
-                ></Input>
-                <Button title="Entrar" ></Button>
-                <ButtonText onClick={navigateToRegister} title="Criar uma conta"></ButtonText>
+                    onChange={e => setPassword(e.target.value)}
+                />
+                <Button onClick={handleSignIn} title="Entrar" />
+                <ButtonText onClick={navigateToRegister} title="Criar uma conta" />
             </Form>
         </Container>
     );

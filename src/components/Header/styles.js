@@ -11,13 +11,13 @@ export const Container = styled.header`
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
     padding: 1.5rem 7.7rem;
-   
+
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
         padding: 1rem 5rem;
         display: flex;
         justify-Content: space-between;
        align-Items: center;
-        
+
     };
 `;
 
@@ -34,6 +34,10 @@ color: ${({ theme }) => theme.COLORS.LIGHT_100};
     white-space: nowrap;
 }
 
+:hover {
+    cursor: pointer;
+}
+
 `;
 
 export const Logout = styled.button`
@@ -41,13 +45,13 @@ export const Logout = styled.button`
     background: none;
     > svg{
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-Size:32px; 
+        font-Size:32px;
     }
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
   display: none;
 
 }
-   
+
 
 `;
 export const List = styled.button`
