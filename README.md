@@ -1,5 +1,5 @@
 
-# Food Explorer  
+# Food Explorer
 
 Neste projeto, criamos o "Food Explorer", um menu interativo destinado a um restaurante fictício.
 Nesta aplicação, apresentamos um projeto completo voltado para um restaurante. Ela permite aos usuários visualizarem todo o cardápio, o qual está organizado por categorias. Além disso, possibilita a busca por pratos específicos, a seleção de quantas refeições desejarem e a realização do pagamento, entre outras funcionalidades.
@@ -14,6 +14,7 @@ Nesta aplicação, apresentamos um projeto completo voltado para um restaurante.
 ## Logo
 
 ![logo](https://github.com/ericajv/food-explorer-app/assets/112775844/e8098d33-386a-4686-a86f-52f2f2b0d2b3)
+
 ##  Features
 
 O Food Explorer englobará duas personas: o administrador e o usuário. Abaixo, estão listadas suas funcionalidades:
@@ -32,11 +33,9 @@ Pode selecionar pratos, categorizados antecipadamente;
 
 ## Layout
 
-![Badge](https://img.shields.io/badge/Figma-Food_explorer-%237159c1?style=for-the-badge&logo=ghost) 
+![Badge](https://img.shields.io/badge/Figma-Food_explorer-%237159c1?style=for-the-badge&logo=ghost)
 
 [Clique aqui para ver o preview no Figma](https://www.figma.com/file/GkqG5AUJe3ppcUEHfvOX6z/food-explorer?type=design&mode=dev)
-
-
 
 ## Screenshots
 
@@ -44,17 +43,16 @@ Pode selecionar pratos, categorizados antecipadamente;
 
 ![tela admin](https://github.com/ericajv/food-explorer-app/assets/112775844/e7402f0d-6770-4ef2-aa84-527d3621b844)
 
-
 **Login de admin:**
 
 *email:* admin@admin.com
 
 *senha:* admin123
 
+## URL
+
+https://api-food-explorer-bf76.onrender.com
+
 ## Autora
-
-
-
-
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ericajanuariovieira/)
