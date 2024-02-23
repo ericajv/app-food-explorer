@@ -8,13 +8,12 @@ import { IngredienteItem } from '../../components/IngredienteItem'
 import { IoChevronBackOutline } from "react-icons/io5";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import { SlArrowDown } from "react-icons/sl";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from '../../services/api';
 import { useState } from 'react';
 
 export function AdicionaPrato() {
     const navigate = useNavigate()
-    const params = useParams()
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -76,12 +75,12 @@ export function AdicionaPrato() {
             navigate("/login")
         }
 
-        console.log(image);
         const formData = new FormData()
         formData.append("image", image)
-        await api.patch(`/plates/${params.id}/image`, formData)
+        await api.patch(`/plates/${response.data.id}/image`, formData)
 
         alert("Refeição salva com sucesso")
+        navigate(`/editar-prato/${response.data.id}`)
     }
 
     return (
@@ -127,9 +126,9 @@ export function AdicionaPrato() {
                     <div className='ingredients'>
                         <span>Ingredientes</span>
                         <IngredientList>
-                            {ingredients.map(ingredient =>
+                            {ingredients.map((key, ingredient) =>
                                 <IngredienteItem
-                                    key={String(ingredient.id)}
+                                    key={`${ingredient.name}-${key}`}
                                     value={ingredient.name}
                                     onClick={() => handleRemoveIngredient(ingredient.name)}
                                 />

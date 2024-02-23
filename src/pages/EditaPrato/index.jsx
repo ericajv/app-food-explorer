@@ -82,8 +82,6 @@ export function EditaPrato() {
         }
 
         if (image && image != response.data.plate.image) {
-            console.log(response.data.plate.image);
-            console.log(image);
             const formData = new FormData()
             formData.append("image", image)
             await api.patch(`/plates/${params.id}/image`, formData)
@@ -124,7 +122,7 @@ export function EditaPrato() {
                             placeholder="selecione a imagem"
                             type="file"
                             id="image"
-                            onChange={e => setImage(e.target.files[0])}
+                            onChange={e => {setImage(e.target.files[0])}}
                         />
                     </div>
                     <div className='name'>
