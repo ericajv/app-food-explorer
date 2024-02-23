@@ -16,13 +16,13 @@ class PlatesController {
         const ingredientsInsert = ingredients.map(ingredient => {
             return {
                 plate_id,
-                name: ingredient
+                name: ingredient.name
             }
         });
 
         await knex("ingredients").insert(ingredientsInsert);
 
-        return response.json()
+        return response.json({id: plate_id})
     }
 
     async show(request, response) {
@@ -76,7 +76,7 @@ class PlatesController {
         await knex("ingredients").where({ plate_id: id }).delete()
 
         if (ingredients.length !== 0) {
-            const ingredientsInsert = ingredients.map(ingredient => { return { plate_id: id, name: ingredient } })
+            const ingredientsInsert = ingredients.map(ingredient => { return { plate_id: id, name: ingredient.name } })
 
             await knex("ingredients").insert(ingredientsInsert)
         }
