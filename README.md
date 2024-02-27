@@ -34,7 +34,7 @@ Pode selecionar pratos, categorizados antecipadamente;
 
 ## Acesso
 
-**URL:** https://api-food-explorer-bf76.onrender.com
+**URL:** https://app-food-explorer.netlify.app/
 
 **Login de admin:**
 
