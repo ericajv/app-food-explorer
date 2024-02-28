@@ -126,7 +126,7 @@ export function AdicionaPrato() {
                     <div className='ingredients'>
                         <span>Ingredientes</span>
                         <IngredientList>
-                            {ingredients.map((key, ingredient) =>
+                            {ingredients.map((ingredient, key) =>
                                 <IngredienteItem
                                     key={`${ingredient.name}-${key}`}
                                     value={ingredient.name}
