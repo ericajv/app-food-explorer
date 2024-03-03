@@ -1,26 +1,34 @@
-
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { Container, Slider } from "./styles"
 import { CardPrato } from '../CardPrato'
 import { useEffect, useState } from "react"
 import { api } from "../../services/api"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../hooks/auth"
 
 export function Sections() {
     const [plates, setPlates] = useState([])
     const [search, setSearch] = useState("")
 
     const navigate = useNavigate()
+    const { signOut } = useAuth()
 
     useEffect(() => {
         async function fetchPlates() {
-            const response = await api.get(`/plates?name=${search}`)
+            const path = search ? `/plates?name=${search}` : '/plates';
 
-            if (response.status == 401) {
-                navigate("/login")
+            try {
+                const response = await api.get(path)
+                setPlates(response.data.categories || [])
+            } catch (error) {
+
+                if (error.response.status == 401) {
+                    signOut()
+                    navigate("/")
+                }
+
+                console.log(error)
             }
-
-            setPlates(response.data.categories || [])
         }
 
         fetchPlates()
