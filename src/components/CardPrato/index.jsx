@@ -16,8 +16,10 @@ export function CardPrato({ title, data, ...rest }) {
     const { user } = useAuth()
     const plateImageUrl = data.image ? `${api.defaults.baseURL}/files/${data.image}` : null
 
-    function navigateToEdit() {
-        navigate(`/editar-prato/${data.id}`)
+    function navigateToPlate() {
+        user.role == "admin"
+            ? navigate(`/editar-prato/${data.id}`)
+            : navigate(`/prato/${data.id}`)
     }
 
     const [quantity, setQuantity] = useState(1)
@@ -36,13 +38,12 @@ export function CardPrato({ title, data, ...rest }) {
         <Container>
             {user.role != "admin"
                 ? <button className="FavoriteMeal" > <FaRegHeart /> </button>
-                : <button onClick={navigateToEdit} className="EditMeal" > <PiPencilSimple /> </button>
+                : <button onClick={navigateToPlate} className="EditMeal" > <PiPencilSimple /> </button>
             }
-            <ImageFav onClick={navigateToEdit}>
+            <ImageFav onClick={navigateToPlate}>
                 <img src={plateImageUrl} alt="imagem do Prato" />
-                {/* <img src="assets\Mask group.png" alt="imagem do Prato" /> */}
             </ImageFav>
-            <Title onClick={navigateToEdit}>
+            <Title onClick={navigateToPlate}>
                 <p>{data.name}</p>
                 <IoIosArrowForward />
             </Title>

@@ -23,6 +23,7 @@ export function Header() {
 
     async function handleSignOut() {
         signOut()
+        navigate("/")
     }
 
     return (
