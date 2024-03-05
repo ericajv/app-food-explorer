@@ -45,16 +45,26 @@ class PlatesController {
     async index(request, response) {
         const { name } = request.query;
 
-        const categories = await knex("categories").orderBy("name");
+        const categories = await knex("categories").orderBy("name")
 
         for (const category of categories) {
-            let platesQuery = knex("plates").where({ category_id: category.id })
+            let platesQuery = knex("ingredients")
+                .select(["plates.*", "ingredients.name as ingredient_name"])
+                .innerJoin("plates", "plates.id", "ingredients.plate_id")
+                .where({ category_id: category.id })
 
             if (name) {
-                platesQuery = platesQuery.whereLike("name", `%${name}%`)
+                platesQuery = platesQuery.where(function() {
+                    this
+                        .whereLike("plates.name", `%${name}%`)
+                        .orWhereLike("ingredients.name", `%${name}%`)
+                })
             }
 
-            category.plates = await platesQuery
+            const plates = await platesQuery
+
+            const platesIds = plates.map(plate => plate.id)
+            category.plates = plates.filter(({ id }, index) => !platesIds.includes(id, index + 1))
         }
 
         return response.json({ categories });
