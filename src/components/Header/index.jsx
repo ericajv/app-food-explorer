@@ -7,7 +7,7 @@ import { HiMenu } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
 
-export function Header() {
+export function Header({ search }) {
     const { user } = useAuth()
     const navigate = useNavigate()
 
@@ -37,7 +37,12 @@ export function Header() {
                 <h1>food explorer</h1>
             </Logo>
 
-            <InputHeader placeholder="Busque por pratos ou ingredientes" icon={GoSearch} />
+            <InputHeader
+                placeholder="Busque por pratos ou ingredientes"
+                icon={GoSearch}
+                type="text"
+                onChange={e => search(e.target.value) }
+            />
 
             <ButtonHeader
                 title={user.role == "admin" ? "Novo prato" : "Pedidos (0)"}
