@@ -16,6 +16,7 @@ background-color: ${({ theme }) => theme.COLORS.DARK_600};
 font-Size: 1rem;
 font-Weight: 200;
 white-space: nowrap;
+z-index: 2;
 `;
 
 export const LogoDark = styled.div`
