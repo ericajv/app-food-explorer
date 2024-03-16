@@ -4,10 +4,14 @@ import { Footer } from '../../components/Footer'
 import { Sections } from '../../components/Sections'
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
     const [search, setSearch] = useState("")
     const [plates, setPlates] = useState([])
+    const { signOut } = useAuth()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function fetchPlates() {
