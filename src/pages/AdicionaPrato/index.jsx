@@ -7,10 +7,11 @@ import { TextArea } from '../../components/TextArea'
 import { IngredienteItem } from '../../components/IngredienteItem'
 import { IoChevronBackOutline } from "react-icons/io5";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
-// import { SlArrowDown } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 import { api } from '../../services/api';
 import { useState } from 'react';
+import { InputCurrency } from '../../components/InputCurrency';
+import { Select } from '../../components/Select';
 
 export function AdicionaPrato() {
     const navigate = useNavigate()
@@ -113,7 +114,7 @@ export function AdicionaPrato() {
                     </div>
                     <div className='category'>
                         <span>Categoria</span>
-                        <select
+                        <Select
                             name="selectedCategory"
                             value={category}
                             onChange={e => setCategory(e.target.value)}
@@ -121,14 +122,7 @@ export function AdicionaPrato() {
                             <option value="Bebidas">Bebidas</option>
                             <option value="Refeições">Refeições</option>
                             <option value="Sobremesas">Sobremesas</option>
-                        </select>
-                        {/* <Input
-                            placeholder="No mínimo 6 caracteres"
-                            icon={SlArrowDown}
-                            type="select"
-                            value={category}
-                            onChange={e => setCategory(e.target.value)}
-                        /> */}
+                        </Select>
                     </div>
                 </div>
                 <div className='secondline'>
@@ -154,18 +148,13 @@ export function AdicionaPrato() {
                     </div>
                     <div className='price'>
                         <span>Preço</span>
-                        <Input
+                        <InputCurrency
                             placeholder="R$ 00,00"
-                            type="float"
-                            // value={"R$ " + String(price.toFixed(2)).replace(".", ",")}
-                            value={price}
-                            onChange={e => {
-                                // console.log(e.target.value)
-                                // const p = e.target.value.split(' ')[1].replace(",", ".")
-                                // console.log(p)
-                                // setPrice(p)
-                                setPrice(e.target.value)
-                            }}
+                            fixedDecimalLength={2}
+                            disableGroupSeparators={true}
+                            intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
+                            value={price.toFixed(2)}
+                            onValueChange={(value, name, values) => setPrice(values.float)}
                         />
                     </div>
                 </div>

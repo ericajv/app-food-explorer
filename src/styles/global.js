@@ -12,13 +12,13 @@ export default createGlobalStyle`
         font-Size: 16px;
 
         @media(max-width: ${DEVICE_BREAKPOINTS.MD}){
-            font-Size: 12px;      
+            font-Size: 12px;
         }
     }
     button {
         cursor: pointer;
         transition: filter 0.2s;
-    
+
     }
     button:hover{
         background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
@@ -28,7 +28,7 @@ export default createGlobalStyle`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         -webkit-font-smoothing: antialiased;
     }
-    body, input, button, textarea{
+    body, input, button, textarea, select {
         font-family:'Poppins', sans-serif;
         outline: none;
         font-Size: 1rem;
